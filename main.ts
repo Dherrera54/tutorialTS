@@ -10,10 +10,11 @@ export const ap = new Aprendiz( "Juan Pablo", "Reyes", "avatar.png", 30, NivelEd
 console.log(ap.cursos);
 let aprendizTable: HTMLElement= document.getElementById("aprendiz")!;
 let estadisticasTable: HTMLElement= document.getElementById("estadisticas")!;
-
+let cursosTable: HTMLElement= document.getElementById("cursos")!;
 
 mostrarDatosAprendiz(ap);
 mostrarEstadisticas(ap);
+mostrarCursosAprendiz(ap);
 
 function mostrarDatosAprendiz(aprendiz : Aprendiz):void{
     let tbodyAprendiz = document.createElement("tbody");
@@ -31,4 +32,19 @@ function mostrarEstadisticas(aprendiz : Aprendiz):void{
     trElement.innerHTML = `<td><b> Cursos certificados</b></td> <td>${numeroCertificados}</td>`;
     estadisticasTable.appendChild(trElement);
 
+}
+
+function mostrarCursosAprendiz(aprendiz:Aprendiz):void{
+    let cursosTbody: HTMLElement=document.createElement("tbody");
+    for(let curso of aprendiz.cursos)
+    {
+        let trElement:HTMLElement = document .createElement("tr");
+        trElement.innerHTML=`<td>${curso.nombre}</td>
+                             <td>${curso.horas}</td>
+                             <td>${curso.calificacion}</td>
+                             <td>${curso.certificado}</td>
+                             <td>${curso.anio}</td>`;
+        cursosTbody.appendChild(trElement  );
+    }
+    cursosTable.appendChild(cursosTbody );
 }
